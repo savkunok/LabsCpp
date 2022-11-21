@@ -1,16 +1,24 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 
 
-class StackException : public std::exception
+class StackException 
 {
+    private:
+    string m_error;
 public:
-	StackException(const char* Exception) :
-		    std::exception(Exception)
-       {
-       } 
+	StackException(string Exception) : m_error(Exception)
+    {
+
+    } 
+
+    string what()
+    {
+        return m_error;
+    }
 };
 
 //////////////////////////////////////////
@@ -117,6 +125,7 @@ public:
     void printStack(){
         if(empty()){
             throw StackException("stack is empty");
+            
         }
         cout<<"stack:" <<endl;
         while (!empty())
@@ -140,6 +149,15 @@ int main()
     cout<<"Enter 3 string:"<<endl;
     cin >> string3;
     Stack<char*> st;
+    try
+    {
+        st.printStack();
+    }
+    catch(StackException e)
+    {
+        cout << e.what() << '\n';
+    }
+    
     st.push(string1);
     st.push(string2);
     st.push(string3);
