@@ -151,12 +151,6 @@ int main()
     Airport1.binRead(bin1);
     std::cout << "Read: " << Airport1;
     std::cout << "All info in bin file:" << std::endl;
-    ///////// All info in bin file /////////
-    for (int i = 0; i < 5; i++)
-    {
-        bin1 >> Airport1;
-        std::cout << Airport1;
-    }
-
+   
     return 0;
 }
